@@ -74,3 +74,7 @@ http://localhost:3000
 
 The application uses a simple Express server to serve static files and handle API requests.
 Product and category data are stored in JSON files for easy modification. The frontend uses vanilla JavaScript with no external dependencies for core functionality.
+
+## License
+
+This project is licensed under the [Apache License 2.0](LICENSE).
