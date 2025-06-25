@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Bike Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Consider a separate admin.css or more specific styles later -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.8/dist/purify.min.js"></script>
+</head>
+<body class="admin-page">
+    <header>
+        <h1>Demo Bike Store</h1>
+        <nav>
+            <a href="/" class="admin-link"><i class="fas fa-store"></i> Ver Tienda</a>
+        </nav>
+        <div class="header-spacer"></div>
+    </header>
+
+    <div class="admin-breadcrumb">
+        <a href="/">Tienda</a> / Panel de Administración
+    </div>
+
+    <main class="admin-container">
+        <div class="admin-tabs">
+            <button class="tab-button active" data-tab="products">Productos</button>
+            <button class="tab-button" data-tab="categories">Categorías</button>
+        </div>
+
+        <div id="products-tab" class="tab-content active">
+            <div class="admin-header">
+                <h2>Gestión de Productos</h2>
+                <button id="addProductBtn" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Nuevo Producto
+                </button>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+
+        <div id="categories-tab" class="tab-content">
+            <div class="admin-header">
+                <h2>Gestión de Categorías</h2>
+                <button id="addCategoryBtn" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Nueva Categoría
+                </button>
+            </div>
+
+            <div class="categories-list" id="categoriesList">
+                <!-- Categories will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Modal for adding/editing products -->
+        <div id="productModal" class="modal">
+            <div class="modal-content admin-modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle">Nuevo Producto</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <form id="productForm">
+                    <input type="hidden" id="productId">
+
+                    <div class="form-group">
+                        <label for="productName">Nombre del Producto*</label>
+                        <input type="text" id="productName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productBrand">Marca</label>
+                        <input type="text" id="productBrand" placeholder="Opcional">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productDescription">Descripción*</label>
+                        <textarea id="productDescription" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Categorías*</label>
+                        <div id="categoriesContainer" class="categories-container">
+                            <!-- Categories will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Imágenes del Producto</label>
+                        <div class="image-upload-container">
+                            <div class="image-upload-area" id="dropZone">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Arrastra y suelta imágenes aquí o haz clic para seleccionar</p>
+                                <p class="info-text">(Máximo 5 imágenes, formatos: JPG, PNG, GIF)</p>
+                            </div>
+                            <input type="file" id="imageInput" accept="image/*" multiple class="image-upload-input">
+                            <div class="image-preview-container" id="imagePreviewContainer"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Variantes del Producto*</label>
+                        <div id="variantsContainer">
+                            <div class="variant-item">
+                                <input type="text" placeholder="Nombre de la variante" class="variant-name" required>
+                                <input type="number" placeholder="Precio" class="variant-price" required min="0" step="0.01">
+                                <input type="number" placeholder="Stock (vacío = infinito)" class="variant-stock" min="0">
+                                <button type="button" class="remove-variant-btn">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="button" id="addVariantBtn" class="btn btn-secondary">
+                            <i class="fas fa-plus"></i> Agregar Variante
+                        </button>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" id="cancelBtn" class="btn btn-secondary">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal for adding/editing categories -->
+        <div id="categoryModal" class="modal">
+            <div class="modal-content admin-modal-content">
+                <div class="modal-header">
+                    <h3 id="categoryModalTitle">Nueva Categoría</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <form id="categoryForm">
+                    <input type="hidden" id="categoryId">
+
+                    <div class="form-group">
+                        <label for="categoryName">Nombre de la Categoría*</label>
+                        <input type="text" id="categoryName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categoryDescription">Descripción</label>
+                        <textarea id="categoryDescription"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categoryParent">Categoría Padre</label>
+                        <select id="categoryParent">
+                            <option value="">Ninguna (Categoría Principal)</option>
+                            <!-- Parent categories will be loaded here -->
+                        </select>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" id="cancelCategoryBtn" class="btn btn-secondary">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="admin.js"></script>
+</body>
+</html>

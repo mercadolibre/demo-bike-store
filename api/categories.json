@@ -1,0 +1,124 @@
+{
+  "categories": [
+    {
+      "id": 30933402,
+      "name": {
+        "es": "Bicicletas"
+      },
+      "description": {
+        "es": "Todo tipo de bicicletas para diferentes usos"
+      },
+      "handle": {
+        "es": "bicicletas"
+      },
+      "parent": null,
+      "subcategories": [
+        30933427,
+        30934213
+      ],
+      "created_at": "2024-03-21T00:00:00.000Z",
+      "updated_at": "2024-03-21T00:00:00.000Z"
+    },
+    {
+      "id": 30933427,
+      "name": {
+        "es": "Cannondale"
+      },
+      "description": {
+        "es": "Bicicletas de la marca Cannondale"
+      },
+      "handle": {
+        "es": "cannondale"
+      },
+      "parent": 30933402,
+      "subcategories": [],
+      "created_at": "2024-03-21T00:00:00.000Z",
+      "updated_at": "2024-03-21T00:00:00.000Z"
+    },
+    {
+      "id": 30934213,
+      "name": {
+        "es": "Scott"
+      },
+      "description": {
+        "es": "Bicicletas de la marca Scott"
+      },
+      "handle": {
+        "es": "scott"
+      },
+      "parent": 30933402,
+      "subcategories": [],
+      "created_at": "2024-03-21T00:00:00.000Z",
+      "updated_at": "2024-03-21T00:00:00.000Z"
+    },
+    {
+      "id": 30934539,
+      "name": {
+        "es": "Vestimenta"
+      },
+      "description": {
+        "es": "Ropa y accesorios de ciclismo"
+      },
+      "handle": {
+        "es": "vestimenta"
+      },
+      "parent": null,
+      "subcategories": [
+        30934549,
+        30934657
+      ],
+      "created_at": "2024-03-21T00:00:00.000Z",
+      "updated_at": "2024-03-21T00:00:00.000Z"
+    },
+    {
+      "id": 30934549,
+      "name": {
+        "es": "Casco"
+      },
+      "description": {
+        "es": "Cascos para ciclismo de diferentes marcas"
+      },
+      "handle": {
+        "es": "casco"
+      },
+      "parent": 30934539,
+      "subcategories": [
+        30934659
+      ],
+      "created_at": "2024-03-21T00:00:00.000Z",
+      "updated_at": "2024-03-21T00:00:00.000Z"
+    },
+    {
+      "id": 30934657,
+      "name": {
+        "es": "Gafas"
+      },
+      "description": {
+        "es": "Gafas deportivas para ciclismo"
+      },
+      "handle": {
+        "es": "gafas"
+      },
+      "parent": 30934539,
+      "subcategories": [],
+      "created_at": "2024-03-21T00:00:00.000Z",
+      "updated_at": "2024-03-21T00:00:00.000Z"
+    },
+    {
+      "name": {
+        "es": "sdadad"
+      },
+      "description": {
+        "es": "adadsa"
+      },
+      "parent": 30934549,
+      "id": 30934659,
+      "handle": {
+        "es": "sdadad"
+      },
+      "subcategories": [],
+      "created_at": "2025-06-23T22:11:32.715Z",
+      "updated_at": "2025-06-23T22:11:32.715Z"
+    }
+  ]
+}
