@@ -26,6 +26,7 @@
         <div class="admin-tabs">
             <button class="tab-button active" data-tab="products">Productos</button>
             <button class="tab-button" data-tab="categories">Categorías</button>
+            <button class="tab-button" data-tab="mercadolibre">MercadoLibre</button>
         </div>
 
         <div id="products-tab" class="tab-content active">
@@ -51,6 +52,186 @@
 
             <div class="categories-list" id="categoriesList">
                 <!-- Categories will be loaded here -->
+            </div>
+        </div>
+
+        <div id="mercadolibre-tab" class="tab-content">
+            <div class="admin-header">
+                <h2>Integración con MercadoLibre</h2>
+            </div>
+
+            <!-- Authentication Section -->
+            <div class="ml-section">
+                <h3>Autenticación</h3>
+                <div id="mlAuthStatus" class="ml-auth-status">
+                    <div class="loading">Verificando estado de autenticación...</div>
+                </div>
+            </div>
+
+            <!-- Products for Migration Section -->
+            <div class="ml-section" id="mlProductsSection" style="display: none;">
+                <h3>Productos para Migrar</h3>
+                <p class="section-description">Selecciona los productos que deseas migrar a MercadoLibre. Para cada producto podrás configurar la categoría y atributos específicos.</p>
+
+                <!-- Batch Migration Controls -->
+                <div class="batch-migration-controls" id="batchMigrationControls" style="display: none;">
+                    <div class="batch-selection-info">
+                        <span id="selectedCount">0</span> productos seleccionados
+                    </div>
+                    <div class="batch-actions">
+                        <button id="selectAllBtn" class="btn btn-secondary">
+                            <i class="fas fa-check-square"></i> Seleccionar Todos
+                        </button>
+                        <button id="deselectAllBtn" class="btn btn-secondary">
+                            <i class="fas fa-square"></i> Deseleccionar Todos
+                        </button>
+                        <button id="batchMigrateBtn" class="btn btn-success" disabled>
+                            <i class="fas fa-upload"></i> Migrar Seleccionados
+                        </button>
+                    </div>
+                </div>
+
+                <div class="ml-products-grid" id="mlProductsGrid">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Migration Status Section -->
+            <div class="ml-section" id="mlStatusSection" style="display: none;">
+                <h3>Estado de Migraciones</h3>
+                <div class="ml-migration-status" id="mlMigrationStatus">
+                    <!-- Migration status will be shown here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Selection Modal -->
+        <div id="categorySelectionModal" class="modal">
+            <div class="modal-content large-modal">
+                <div class="modal-header">
+                    <h3 id="categoryModalTitle">Configurar Producto para MercadoLibre</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <!-- Product Info -->
+                    <div class="modal-product-info">
+                        <div class="modal-product-header">
+                            <img id="modalProductImage" src="" alt="Producto" class="modal-product-image">
+                            <div class="modal-product-details">
+                                <h4 id="modalProductName" class="modal-product-name"></h4>
+                                <p id="modalProductDescription" class="modal-product-description"></p>
+                                <div id="modalProductPrice" class="modal-product-price"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category Selection -->
+                    <div class="modal-section">
+                        <h5>1. Seleccionar Categoría</h5>
+
+                        <!-- Suggested Categories -->
+                        <div id="suggestedCategories" class="suggested-categories" style="display: none;">
+                            <h6>Categorías Sugeridas por IA</h6>
+                            <div class="loading" id="categoryPredictionLoading">
+                                Analizando producto...
+                            </div>
+                            <div id="categoryPredictionsList" class="category-predictions-list">
+                                <!-- Suggested categories will appear here -->
+                            </div>
+                        </div>
+
+                        <!-- Manual Category Browser -->
+                        <div class="manual-category-section">
+                            <h6>Explorar Categorías Manualmente</h6>
+                            <div class="category-browser">
+                                <div class="category-search">
+                                    <input type="text" id="categorySearchInput" placeholder="Buscar categorías...">
+                                    <button id="categorySearchBtn" class="btn btn-secondary">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                                <div id="categoryBrowser" class="category-tree">
+                                    <!-- Category tree will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Selected Category -->
+                        <div id="selectedCategorySection" class="selected-category" style="display: none;">
+                            <h6>Categoría Seleccionada</h6>
+                            <div id="selectedCategoryInfo" class="selected-category-info">
+                                <!-- Selected category info will appear here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pricing & Marketplace Section -->
+                    <div id="pricingSection" style="display: none;">
+                        <h4><i class="fas fa-dollar-sign"></i> Precio y Configuración de Mercado</h4>
+                        <div class="pricing-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="productPrice">Precio (COP) *</label>
+                                    <input type="number" id="productPrice" class="form-control" placeholder="Ej: 150000" min="1" step="1" required>
+                                    <small class="form-text text-muted">Precio en pesos colombianos (sin decimales)</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="listingType">Tipo de Publicación</label>
+                                    <select id="listingType" class="form-control">
+                                        <option value="gold_pro">Premium (Recomendado)</option>
+                                        <option value="gold_special">Clásica</option>
+                                    </select>
+                                    <small class="form-text text-muted">Premium ofrece mayor visibilidad</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inventory Section -->
+                    <div id="inventorySection" style="display: none;">
+                        <h4><i class="fas fa-boxes"></i> Inventario y Stock</h4>
+                        <div class="inventory-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="availableQuantity">Cantidad Disponible *</label>
+                                    <input type="number" id="availableQuantity" class="form-control" placeholder="Ej: 10" min="1" required>
+                                    <small class="form-text text-muted">Unidades disponibles para venta</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sellerSku">SKU del Vendedor</label>
+                                    <input type="text" id="sellerSku" class="form-control" placeholder="Ej: BIKE-001">
+                                    <small class="form-text text-muted">Código interno para identificar el producto</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attributes Section -->
+                    <div id="attributesSection" class="modal-section" style="display: none;">
+                        <h5><i class="fas fa-tags"></i> Atributos del Producto</h5>
+                        <div id="attributesForm" class="attributes-form"></div>
+                    </div>
+
+                    <!-- Product Identifiers Section -->
+                    <div id="identifiersSection" style="display: none;">
+                        <h4><i class="fas fa-barcode"></i> Identificadores del Producto</h4>
+                        <div class="identifiers-form">
+                            <div class="form-group">
+                                <label for="productGtin">Código de Barras (GTIN/UPC/EAN) *</label>
+                                <input type="text" id="productGtin" class="form-control" placeholder="Ej: 1234567890123" required>
+                                <small class="form-text text-muted">Código de barras del producto (requerido)</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" id="cancelMigrationBtn" class="btn btn-secondary">Cancelar</button>
+                    <button type="button" id="saveMigrationConfigBtn" class="btn btn-primary" disabled>
+                        <i class="fas fa-save"></i> Guardar Configuración
+                    </button>
+                </div>
             </div>
         </div>
 
