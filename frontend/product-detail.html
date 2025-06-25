@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Producto - Demo Bike Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.8/dist/purify.min.js"></script>
+    <!-- We might need a carousel library later, or implement a simple one -->
+</head>
+<body>
+    <header>
+        <h1>Demo Bike Store</h1>
+        <div class="cart-icon-container">
+            <i class="fas fa-shopping-cart" id="cart-icon"></i>
+            <span id="cart-count">0</span>
+        </div>
+    </header>
+
+    <main class="product-detail-container">
+        <a href="index.html" class="back-link">&larr; Volver a la tienda</a>
+
+        <div class="product-detail-content">
+            <h2 id="product-name">Nombre del Producto</h2>
+
+            <div class="product-layout">
+                <div class="product-images">
+                    <!-- Image Carousel will go here -->
+                    <div id="image-carousel" class="carousel">
+                        <div class="carousel-inner">
+                            <!-- Carousel images will be populated by JS -->
+                        </div>
+                        <button class="carousel-control prev">&lt;</button>
+                        <button class="carousel-control next">&gt;</button>
+                    </div>
+                     <div id="main-image-container">
+                        <img src="https://via.placeholder.com/600x400?text=Producto" alt="Imagen Principal del Producto" id="main-product-image">
+                    </div>
+                    <div id="thumbnail-images" class="thumbnails">
+                        <!-- Thumbnails will be populated by JS -->
+                    </div>
+                </div>
+
+                <div class="product-purchase-info">
+                    <p class="product-price-detail" id="product-price">Precio</p>
+                    <p class="product-stock-detail" id="product-stock">Stock</p>
+                    <div class="quantity-controls-detail">
+                        <button class="quantity-btn minus" id="quantity-minus">-</button>
+                        <input type="number" class="quantity-input" id="quantity-input" value="1" min="1">
+                        <button class="quantity-btn plus" id="quantity-plus">+</button>
+                    </div>
+                    <button class="add-to-cart-btn-detail" id="add-to-cart-button">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <h3>Descripción</h3>
+            <div id="product-description-table" class="description-table">
+                <!-- Product description (HTML table) will be inserted here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Cart Modal (copied from index.html for consistency, can be a shared component later) -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Shopping Cart</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="cart-items" class="cart-items">
+                    <!-- Cart items will be dynamically added here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="cart-summary">
+                    <span class="cart-total-label">Total:</span>
+                    <span id="cart-total" class="cart-total">$0</span>
+                </div>
+                <button id="empty-cart" class="empty-cart-btn">Empty Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="product-detail.js"></script>
+    <!-- We'll also need a shared script for cart functionality or duplicate parts of script.js -->
+</body>
+</html>
