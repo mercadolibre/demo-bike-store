@@ -7,13 +7,17 @@
     "start": "node api/server.js"
   },
   "dependencies": {
+    "axios": "^1.9.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dompurify": "^3.2.6",
     "dotenv": "^16.3.1",
     "express": "^4.21.2",
+    "form-data": "^4.0.2",
     "multer": "^2.0.0",
-    "sanitize-filename": "^1.6.3"
+    "sanitize-filename": "^1.6.3",
+    "node-fetch": "^2.7.0",
+    "sharp": "^0.34.2"
   },
   "license": "Apache-2.0",
   "copyright": "Copyright (c) 2025 MercadoLibre. All rights reserved. This product includes software developed by MercadoLibre."
