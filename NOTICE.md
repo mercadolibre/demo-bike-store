@@ -9,7 +9,7 @@ This product includes software developed by MercadoLibre.
 
 ## Dependencies and Licenses
 
-### [body-parser 1.20.3](https://github.com/expressjs/body-parser)
+### [body-parser 1.20.2](https://github.com/expressjs/body-parser)
 Copyright (c) 2014-2023 Douglas Christopher Wilson
 License: MIT
 
@@ -21,7 +21,7 @@ License: MIT
 
 ---
 
-### [dotenv 16.5.0](https://github.com/motdotla/dotenv)
+### [dotenv 16.3.1](https://github.com/motdotla/dotenv)
 Copyright (c) 2013-2024 Mot <motdotla@gmail.com>
 License: BSD-2-Clause
 
@@ -42,6 +42,8 @@ License: MIT
 ### [dompurify 3.2.6](https://github.com/cure53/DOMPurify)
 Copyright 2025 Dr.-Ing. Mario Heiderich, Cure53
 License: MPL-2.0 OR Apache-2.0
+
+**Note:** This project uses DOMPurify both as an npm package (version 3.2.6) and via CDN (version 3.0.8) in the frontend HTML files.
 
 ---
 
