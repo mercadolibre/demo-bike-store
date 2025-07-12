@@ -53,6 +53,30 @@ License: WTFPL OR ISC
 
 ---
 
+### [axios 1.9.0](https://github.com/axios/axios)
+Copyright (c) 2014-present Matt Zabriskie  
+License: MIT
+
+---
+
+### [form-data 4.0.2](https://github.com/form-data/form-data)
+Copyright (c) 2010-2019 Felix Geisendörfer, Jonathan Ong, and contributors  
+License: MIT
+
+---
+
+### [node-fetch 2.7.0](https://github.com/node-fetch/node-fetch)
+Copyright (c) 2016 David Frank  
+License: MIT
+
+---
+
+### [sharp 0.34.2](https://github.com/lovell/sharp)
+Copyright (c) 2013-2024 Lovell Fuller and contributors  
+License: Apache-2.0
+
+---
+
 ## License Information for Included Software
 
 - **Apache-2.0**
